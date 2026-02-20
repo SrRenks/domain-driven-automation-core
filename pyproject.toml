@@ -1,0 +1,44 @@
+[project]
+name = "project"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Ricardo Castro"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic (>=2.12.5,<3.0.0)",
+    "sqlalchemy (>=2.0.46,<3.0.0)",
+    "jsonschema (>=4.26.0,<5.0.0)",
+    "rich (>=14.3.2,<15.0.0)",
+    "tqdm (>=4.67.3,<5.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "project", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+pytest-cov = "^7.0.0"
+factory-boy = "^3.3.3"
+pytest-postgresql = "^8.0.0"
+psycopg2-binary = "^2.9.11"
+pytest-sugar = "^1.1.1"
+pytest-clarity = "^1.0.1"
+
+[tool.pytest.ini_options]
+addopts = """
+    -ra
+    --tb=short
+    --color=yes
+    --cov=src/project
+    --cov-report=term:skip-covered
+    --no-cov-on-fail
+"""
+testpaths = ["tests"]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
